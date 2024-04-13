@@ -1,0 +1,47 @@
+
+
+{% block title %}Hello ProjetController{% endblock %}
+
+{% block body %}
+<h2><small> <a href="{{ path('ajout_pro')}}">Ajouter</a>
+ {{ form_start(form)}}
+ {{ form_widget(form)}}
+ {{ form_end(form) }}
+ </small></h2>
+
+<table class="table table-hover table-striped" border="1">
+
+<table class="table table-hover table-striped" border="1">
+<thead>
+<tr>
+<th>#</th>
+<th>Nom projet </th>
+<th> duree </th>
+<th> created at </th>
+<th> type </th>
+<th></th>
+</thead>
+<tbody>
+{% for projet in lesProjets %}
+<tr>
+<td>{{projet.id}}</td>
+<td>{{projet.nomp }}</td>
+<td>{{projet.duree }}</td>
+<td>{{projet.createdat | date('d/m/Y')}}</td>
+<td>{{projet.type}}</td>
+<td>
+<a class="btn btn-primary" href="#">Voir</a>
+<a class="btn btn-info" href="{{ path('edit_user', {'id':projet.id }) }}">Modifier</a>
+<a class="btn btn-danger" href="{{ path('cand_delet', {'id':projet.id }) }}"
+onclick="return confirm('Are you sure to delete!{{ projet.nomp 
+}}')">Supprimer</a>
+</td>
+</tr>
+{% else %}
+<tr>
+<td colspan="5">Aucun abonné</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
